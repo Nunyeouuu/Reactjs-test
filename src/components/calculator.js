@@ -5,7 +5,8 @@ function Calculator() {
   const [angka2, setAngka2] = useState(0);
   const [operation, setOperation] = useState();
   const operasi = angka + angka2;
-  let Hasil = angka + angka2;
+  const Hasil = angka + angka2;
+  const [jenis, setJenis] = useState("");
 
   useEffect(() => {
     if (angka < 0) {
@@ -14,7 +15,12 @@ function Calculator() {
     if (angka2 < 0) {
       setAngka2(0);
     }
-  }, [angka, angka2]);
+    if (operasi % 2 == 0) {
+      setJenis("Genap");
+    } else {
+      setJenis("Ganjil");
+    }
+  }, [angka, angka2, jenis]);
   return (
     <>
       <div className="Hasil">
@@ -24,7 +30,7 @@ function Calculator() {
       </div>
 
       <div className="">
-        <p>jenis Bilangan =</p>
+        <p>jenis Bilangan Hasil: {jenis} </p>
       </div>
       <div className="container-btnAngka">
         <button onClick={() => setAngka(angka + 1)}>
